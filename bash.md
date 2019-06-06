@@ -145,7 +145,9 @@ COMMAND1 2>&1 | COMMAND2
 COMMAND1 |& COMMAND2
 ```
 
-- [here documents](http://tldp.org/LDP/abs/html/here-docs.html)
+---
+
+### [Here documents](http://tldp.org/LDP/abs/html/here-docs.html)
 ```bash
 <<TAG
 ...
