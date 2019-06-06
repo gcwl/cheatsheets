@@ -82,18 +82,6 @@ Syntax                          | Explantion
 `${var/pattern/string}`         | Find and replace (only replace first occurrence)
 `${var//pattern/string}`        | Find and replace all occurrences
 
-
-
----
-
-### Directory stack
-
-```bash
-$ dirs            # Display the directory stack
-$ pushd           # Push directory into the stack
-$ popd            # Pop directory from the stack and cd to it
-```
-
 ---
 
 ### [Redirection](http://wiki.bash-hackers.org/syntax/redirection)
