@@ -56,56 +56,16 @@ $ !:gs/foo/bar/:p  # replace last command for foo with bar globally, and without
 
 ---
 
-### [String manipulation](http://mywiki.wooledge.org/BashGuide/Parameters)
+### String manipulation
+- http://mywiki.wooledge.org/BashGuide/Parameters
+- http://www.tldp.org/LDP/abs/html/string-manipulation.html
+- http://www.cyberciti.biz/tips/bash-shell-parameter-substitution-2.html
 
-Syntax                       | Description
-------                       | -----------
-`${parameter:-value}`        | Use Default Value. If 'parameter' is unset or null, 'value' is substituted. Otherwise, the value of 'parameter' is substituted.
-`${parameter:=value}`        | Assign Default Value. If 'parameter' is unset or null, 'value' (which may be an expansion) is assigned to 'parameter'. The value of 'parameter' is then substituted.
-`${parameter:+value}`        | Use Alternate Value. If 'parameter' is null or unset, nothing is substituted, otherwise 'value' is substituted.
-
-Syntax                       | Description
-------                       | -----------
-`${parameter:offset:length}` | Substring Expansion. Expands to up to 'length' characters of 'parameter' starting at the character specified by 'offset' (0-indexed). If ':length' is omitted, go all the way to the end. If 'offset' is negative (use parentheses!), count backward from the end of 'parameter' instead of forward from the beginning. If 'parameter' is @ or an indexed array name subscripted by @ or *, the result is 'length' positional parameters or members of the array, respectively, starting from 'offset'.
-`${#parameter}`              | The length in characters of the value of 'parameter' is substituted.
-
-Syntax                       | Description
-------                       | -----------
-`${parameter#pattern}`       | The 'pattern' is matched against the beginning of 'parameter'. The result is the expanded value of 'parameter' with the shortest match deleted.
-`${parameter##pattern}`      | As above, but the longest match is deleted.
-`${parameter%pattern}`       | The 'pattern' is matched against the end of 'parameter'. The result is the expanded value of 'parameter' with the shortest match deleted.
-`${parameter%%pattern}`      | As above, but the longest match is deleted.
-
-Syntax                       | Description
-------                       | -----------
-`${parameter/pat/string}`    | Results in the expanded value of 'parameter' with the first (unanchored) match of 'pat' replaced by 'string'.
-`${parameter//pat/string}`   | As above, but every match of 'pat' is replaced.
-
-
-http://www.tldp.org/LDP/abs/html/string-manipulation.html
-```bash
-${#string}                          # string length
-
-${string:position}                  # extracts substring from $string at $position
-${string:position:length}           # extracts $length characters of substring from $string at $position
-
-${string#substring}                 # deletes shortest match of $substring from front of $string
-${string##substring}                # deletes longest match of $substring from front of $string
-${string%substring}                 # deletes shortest match of $substring from back of $string
-${string%%substring}                # deletes longest match of $substring from back of $string
-
-${string/substring/replacement}     # replace first match of $substring with $replacement
-${string//substring/replacement}    # replace all matches of $substring with $replacement
-${string/#substring/replacement}    # if $substring matches front end of $string, substitute $replacement for $substring
-${string/%substring/replacement}    # if $substring matches back end of $string, substitute $replacement for $substring
-```
-
-http://www.cyberciti.biz/tips/bash-shell-parameter-substitution-2.html
-
-Syntax                          | Explantion
-------                          | ----------
+Syntax                          | Description
+------                          | -----------
 `${parameter:-defaultValue}`    | Get default shell variables value
-`${parameter:=defaultValue}`    | Set default shell variables value
+`${parameter:=defaultValue}`    | Assign Default Value. If 'parameter' is unset or null, 'value' is assigned to 'parameter'. The value of 'parameter' is then substituted.
+`${parameter:+value}`           | Use Alternate Value; If 'parameter' is null or unset, nothing is substituted, otherwise 'value' is substituted.
 `${parameter:?"Error Message"}` | Display an error message if parameter is not set
 `${#var}`                       | Find the length of the string
 `${var%pattern}`                | Remove from shortest rear (end) pattern
@@ -115,6 +75,8 @@ Syntax                          | Explantion
 `${var##pattern}`               | Remove from longest front pattern
 `${var/pattern/string}`         | Find and replace (only replace first occurrence)
 `${var//pattern/string}`        | Find and replace all occurrences
+`${var/#pattern/string}`        | Find pattern from front and replace
+`${var/%pattern/string}`        | Find pattern from rear (end) and replace
 
 ---
 
