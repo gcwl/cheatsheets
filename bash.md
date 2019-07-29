@@ -12,10 +12,10 @@
 Key binding   | Action
 -----------   | ------
 Ctrl-r        | History reverse search
-Ctrl-a        | Jump to BOL 
-Ctrl-e        | Jump to EOL 
+Ctrl-a        | Jump to BOL
+Ctrl-e        | Jump to EOL
 Ctrl-l        | Clear terminal
-Ctrl-k        | Delete from cursor to EOL 
+Ctrl-k        | Delete from cursor to EOL
 Ctrl-         | Undo last operation
 Ctrl-m        | Return
 Ctrl-w        | Delete word left from cursor
@@ -255,4 +255,17 @@ fi
 if [[ $count -gt 0  &&  $somevar != $var ]]; then
     ... do something
 fi
+```
+
+---
+
+### Loop through file names returned by `find`
+- https://stackoverflow.com/questions/9612090/how-to-loop-through-file-names-returned-by-find
+
+```bash
+find . -type f -iname '*pattern*' | while read f; do  echo $f; done
+# or
+find . -type f -iname '*pattern' -print0 | while read -d $'\0' f; do echo $f; done
+# or
+find . -type f -iname '*pattern' -print0 | while IFS= read -r -d '' f; do echo $f; done
 ```
