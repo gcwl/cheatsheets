@@ -269,3 +269,47 @@ find . -type f -iname '*pattern' -print0 | while read -d $'\0' f; do echo $f; do
 # or
 find . -type f -iname '*pattern' -print0 | while IFS= read -r -d '' f; do echo $f; done
 ```
+
+---
+
+## Redirection from/to stdin or stdout using `-` (dash)
+- http://tldp.org/LDP/abs/html/special-chars.html#DASHREF2
+
+```bash
+## Examples
+
+# where a filename is expected, - redirects output to stdout, or accepts input from stdin, rather than from a file.
+echo "whatever" | cat -
+
+grep Linux file1 | diff file2 -
+
+(cd /source/directory && tar cf - . ) | (cd /dest/directory && tar xpvf -)
+# Move entire file tree from one directory to another
+# [courtesy Alan Cox <a.cox@swansea.ac.uk>, with a minor change]
+
+# 1) cd /source/directory
+#    Source directory, where the files to be moved are.
+# 2) &&
+#   "And-list": if the 'cd' operation successful,
+#    then execute the next command.
+# 3) tar cf - .
+#    The 'c' option 'tar' archiving command creates a new archive,
+#    the 'f' (file) option, followed by '-' designates the target file
+#    as stdout, and do it in current directory tree ('.').
+# 4) |
+#    Piped to ...
+# 5) ( ... )
+#    a subshell
+# 6) cd /dest/directory
+#    Change to the destination directory.
+# 7) &&
+#   "And-list", as above
+# 8) tar xpvf -
+#    Unarchive ('x'), preserve ownership and file permissions ('p'),
+#    and send verbose messages to stdout ('v'),
+#    reading data from stdin ('f' followed by '-').
+#
+#    Note that 'x' is a command, and 'p', 'v', 'f' are options.
+#
+# Whew!
+```
